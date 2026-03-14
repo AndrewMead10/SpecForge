@@ -310,6 +310,8 @@ def build_target_model(
         if args.is_vlm:
             processor = AutoProcessor.from_pretrained(
                 args.target_model_path,
+                cache_dir=args.model_download_dir,
+                trust_remote_code=args.trust_remote_code,
                 min_pixels=args.min_pixels,
                 max_pixels=args.max_pixels,
             )
@@ -423,7 +425,9 @@ def build_dataloaders(
 ) -> Tuple[DataLoader, str, Optional[DataLoader]]:
     # build dataloaders
     tokenizer = AutoTokenizer.from_pretrained(
-        args.target_model_path, trust_remote_code=args.trust_remote_code
+        args.target_model_path,
+        cache_dir=args.model_download_dir,
+        trust_remote_code=args.trust_remote_code,
     )
 
     # convert to dataloader
