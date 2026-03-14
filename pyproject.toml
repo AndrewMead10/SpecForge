@@ -30,7 +30,10 @@ dependencies = [
 ]
 
 [tool.setuptools]
-packages = ["specforge"]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["specforge", "specforge.*"]
 
 [project.optional-dependencies]
 dev = [
